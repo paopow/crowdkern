@@ -1,5 +1,6 @@
 from base_kernel import BaseKernel
 import math
+from itertools import combinations
 
 class RandomSimTest(BaseKernel):
 	def __init__(self, items, comparisons, M_true, **args):
@@ -24,23 +25,21 @@ class RandomSimTest(BaseKernel):
 
         self.update_M()
 
-    def update_error(self, num_query):
-        pairs = list(combinations(range(len(self.items)), 2))
-        random.shuffle(pairs)
-        step = num_query/10 - 1
-        for i in range(self.num_pair_sample):
-            pair = pairs[i]
-            a = self.M[pair[0],:]
-            b = self.M[pair[1],:]
-            pred_dist = self.dist(a,b)
+	def update_error(self, num_query):
+		pairs = list(combinations(range(len(self.items)), 2))
+		random.shuffle(pairs)
+	    step = num_query/10 - 1
+	    for i in range(self.num_pair_sample):
+	    	pair = pairs[i]
+	    	a = self.M[pair[0],:]
+	    	b = self.M[pair[1],:]
+	    	pred_dist = self.dist(a,b)
+	    	true_a = self.M_true[pair[0],:]
+	    	true_b = self.M_true[pair[1],:]
+	    	real_dist = self.dist(true_a,true_b)
+	    	diff = abs(pred_dist - real_dist)
 
-            true_a = self.M_true[pair[0],:]
-            true_b = self.M_true[pair[1],:]
-            real_dist = self.dist(true_a,true_b)
-
-            diff = abs(pred_dist - real_dist)
-            
-            self.errors[step*self.num_pair_sample + i,:] = [num_query, diff]    
+	    	self.errors[step*self.num_pair_sample + i,:] = [num_query, diff]    	    	
 
 	def get_error_array(self):
         return self.errors    

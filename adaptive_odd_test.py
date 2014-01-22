@@ -2,6 +2,7 @@ from base_kernel import BaseKernel
 import math
 from utils import odd_to_sim
 from active_learning_odd import *
+from itertools import combinations
 
 class AdaptiveOddTest(BaseKernel):
 	def __init__(self, items, comparisons, M_true, **args):

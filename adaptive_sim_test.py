@@ -1,7 +1,7 @@
 from base_kernel import BaseKernel
 import math
 from active_learning_sim import *
-
+from itertools import combinations
 class AdaptiveSimTest(BaseKernel):
 	def __init__(self, items, comparisons, M_true, **args):
 		self.items = items

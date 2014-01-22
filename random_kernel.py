@@ -7,6 +7,12 @@ import sys
 from itertools import combinations
 
 
+def odd_to_sim(comparison):
+    comp1 = [comparison[0], comparison[2], comparison[1]]
+    comp2 = [comparison[2], comparison[0], comparison[1]]
+    return (comp1, comp2)
+
+
 def cost(M, mu, comparisons):
     M /= np.sqrt(np.sum(M * M, axis=1))[:, None]
     cost = 0.

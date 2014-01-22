@@ -1,6 +1,7 @@
 from base_kernel import BaseKernel
 import math
 from utils import odd_to_sim
+from itertools import combinations
 
 class RandomOddTest(BaseKernel):
 	def __init__(self, items, comparisons, M_true, **args):
