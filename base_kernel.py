@@ -1,10 +1,7 @@
 import random
 import numpy as np
-import scipy.optimize
-import matplotlib.pyplot as plt
-import pandas as pd
+# import matplotlib.pyplot as plt
 import sys
-from itertools import combinations
 import prob_mds
 
 
