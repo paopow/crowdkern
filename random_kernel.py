@@ -117,7 +117,6 @@ class RandomSimKernelTest(object):
                     answer = (item_to_ask_about, b, c)
                 else:
                     answer = (item_to_ask_about, c, b)
-                self.comparisons.append(answer)
             self.comparisons.append(answer)
 
 
