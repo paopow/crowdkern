@@ -57,9 +57,9 @@ class AdaptiveOddTest(BaseKernel):
         true_a = self.M_true[a]
         true_b = self.M_true[b]
         true_c = self.M_true[c]
-        ab = self.dist(a,b)
-        bc = self.dist(b,c)
-        ac = self.dist(a,c)
+        ab = self.dist(true_a, true_b)
+        bc = self.dist(true_b, true_c)
+        ac = self.dist(true_a, true_c)
 
         if (ab >= bc and ac >= bc): # if a is odd
             answer = (b, a, c)

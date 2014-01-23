@@ -55,8 +55,8 @@ class AdaptiveSimTest(BaseKernel):
         true_a = self.M_true[a]
         true_b = self.M_true[b]
         true_c = self.M_true[c]
-        ab = self.dist(a, b)
-        ac = self.dist(a, c)
+        ab = self.dist(true_a, true_b)
+        ac = self.dist(true_a, true_c)
         if ab > ac:
             answer = (a, c, b)
         elif ab < ac:
