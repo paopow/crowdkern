@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import sys
 from itertools import combinations
+import math
 
 
 def cost(M, mu, comparisons):
@@ -159,7 +160,9 @@ class CrowdKernel(object):
 
 class CrowdKernelTest(object):
     def __init__(self, items, initial_comparisons, num_dims, mu, M_true, max_query):
-        self.num_pair_sample = 150 # TODO: replace with sth else
+        num_items = len(items)
+        num_pairs = num_items*(num_items -1)/2
+        self.num_pair_sample = int(math.floor(0.08*(num_pairs))*10)
         self.max_query = max_query
         self.errors = np.zeros((self.num_pair_sample*(max_query/10), 2))
         self.items = items
@@ -205,6 +208,9 @@ class CrowdKernelTest(object):
 
     def get_comparison(self):
         return self.comparisons
+
+    def plot_scatter(self):
+        plt.scatter(self.M[:,0], self.M[:,1])
 
     def loop_count(self, num_query):
         for i in range(num_query):

@@ -6,6 +6,7 @@ import pandas as pd
 import pickle
 import sys
 from itertools import combinations
+import math
 
 
 def cost(M, mu, comparisons):
@@ -173,7 +174,9 @@ class CK_odd(object):
 
 class CK_odd_test(object):
     def __init__(self, items, initial_comparisons, num_dims, mu, M_true, max_query ):
-        self.num_pair_sample = 150 # TODO: replace with sth else
+        num_items = len(items)
+        num_pairs = num_items*(num_items -1)/2
+        self.num_pair_sample = int(math.floor(0.08*(num_pairs))*10)
         self.max_query = max_query
         self.errors = np.zeros((self.num_pair_sample*(max_query/10), 2))
         self.items = items

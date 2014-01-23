@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import sys
 from itertools import combinations
+import math
 
 
 def odd_to_sim(comparison):
@@ -56,7 +57,9 @@ def optimize_item_positions(num_items, num_dims, mu, comparisons):
 
 class RandomSimKernelTest(object):
     def __init__(self, items, initial_comparisons, num_dims, mu, M_true, max_query):
-        self.num_pair_sample = 150 # TODO: replace with sth else
+        num_items = len(items)
+        num_pairs = num_items*(num_items -1)/2
+        self.num_pair_sample = int(math.floor(0.08*(num_pairs))*10)
         self.max_query = max_query
         self.mu = mu
         self.errors = np.zeros((self.num_pair_sample*(max_query/10), 2))
@@ -138,7 +141,9 @@ class RandomSimKernelTest(object):
 
 class RandomOddKernelTest(object):
     def __init__(self, items, initial_comparisons, num_dims, mu, M_true, max_query ):
-        self.num_pair_sample = 150 # TODO: replace with sth else
+        num_items = len(items)
+        num_pairs = num_items*(num_items -1)/2
+        self.num_pair_sample = int(math.floor(0.08*(num_pairs))*10)
         self.max_query = max_query
         self.mu = mu
         self.errors = np.zeros((self.num_pair_sample*(max_query/10), 2))
