@@ -2,21 +2,16 @@ from base_kernel import BaseKernel
 import math
 from active_learning_sim import *
 from itertools import combinations
+
+
 class AdaptiveSimTest(BaseKernel):
-    def __init__(self, items, comparisons, M_true, **args):
+    def __init__(self, items, comparisons, M_true, num_dims=2, mu=0.5, max_query=100):
         self.items = items
         self.comparisons = comparisons[:]
         self.M_true = M_true
-        self.num_dims = 2
-        self.mu = 0.5
-        self.max_query = 100
-
-        if 'num_dims' in args:
-            self.num_dims = args['num_dims']
-        if 'mu' in args:
-            self.mu = args['mu']
-        if 'max_query' in args:
-            self.max_query = max_query
+        self.num_dims = num_dims
+        self.mu = mu
+        self.max_query = max_query
 
         num_items = len(self.items)
         num_pairs = num_items*(num_items -1)/2
