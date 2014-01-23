@@ -4,10 +4,10 @@ from utils import odd_to_sim
 from itertools import combinations
 
 class RandomOddTest(BaseKernel):
-	def __init__(self, items, comparisons, M_true, **args):
-		self.items = items
-		self.comparisons = comparisons[:]
-		self.M_true = M_true
+    def __init__(self, items, comparisons, M_true, **args):
+        self.items = items
+        self.comparisons = comparisons[:]
+        self.M_true = M_true
         self.num_dims = 2
         self.mu = 0.5
         self.max_query = 100
@@ -17,7 +17,7 @@ class RandomOddTest(BaseKernel):
         if 'mu' in args:
             self.mu = args['mu']
         if 'max_query' in args:
-        	self.max_query = max_query
+            self.max_query = max_query
 
         num_items = len(self.items)
         num_pairs = num_items*(num_items -1)/2
@@ -44,11 +44,11 @@ class RandomOddTest(BaseKernel):
             
             self.errors[step*self.num_pair_sample + i,:] = [num_query, diff]    
 
-	def get_error_array(self):
+    def get_error_array(self):
         return self.errors    
 
     def get_answer(self, a, b, c):
-    	true_a = self.M_true[a]
+        true_a = self.M_true[a]
         true_b = self.M_true[b]
         true_c = self.M_true[c]
         ab = self.dist(a,b)

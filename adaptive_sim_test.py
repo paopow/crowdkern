@@ -3,8 +3,8 @@ import math
 from active_learning_sim import *
 from itertools import combinations
 class AdaptiveSimTest(BaseKernel):
-	def __init__(self, items, comparisons, M_true, **args):
-		self.items = items
+    def __init__(self, items, comparisons, M_true, **args):
+        self.items = items
         self.comparisons = comparisons[:]
         self.M_true = M_true
         self.num_dims = 2
@@ -40,19 +40,19 @@ class AdaptiveSimTest(BaseKernel):
             real_dist = self.dist(true_a,true_b)
 
             diff = abs(pred_dist - real_dist)
-            
-            self.errors[step*self.num_pair_sample + i,:] = [num_query, diff]    
 
-	def get_error_array(self):
-        return self.errors    
+            self.errors[step*self.num_pair_sample + i,:] = [num_query, diff]
+
+    def get_error_array(self):
+        return self.errors
 
     def get_query(self):
         item_to_ask_about = random.randrange(len(self.items))
         b, c, expected_info_gain = what_should_we_ask(item_to_ask_about, self.M, self.mu, self.comparisons)
         return item_to_ask_about, b, c
-            
+
     def get_answer(self, a, b, c):
-    	true_a = self.M_true[a]            
+        true_a = self.M_true[a]
         true_b = self.M_true[b]
         true_c = self.M_true[c]
         ab = self.dist(a, b)
@@ -61,7 +61,7 @@ class AdaptiveSimTest(BaseKernel):
             answer = (a, c, b)
         elif ab < ac:
             answer = (a, b, c)
-        else: 
+        else:
             if np.random.random_integers(0,1) == 0:
                 answer = (a, b, c)
             else:
