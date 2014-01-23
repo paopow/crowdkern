@@ -6,9 +6,9 @@ import prob_mds
 
 
 class BaseKernel(object):
-	def __init__(self, items, comparisons, **args):
-		self.items = items
-		self.comparisons = comparisons[:]
+    def __init__(self, items, comparisons, **args):
+        self.items = items
+        self.comparisons = comparisons[:]
         self.num_dims = 2
         self.mu = 0.5
 
