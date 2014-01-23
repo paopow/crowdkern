@@ -42,11 +42,11 @@ class AdaptiveOddTest(BaseKernel):
             real_dist = self.dist(true_a,true_b)
 
             diff = abs(pred_dist - real_dist)
-            
-            self.errors[step*self.num_pair_sample + i,:] = [num_query, diff]    
+
+            self.errors[step*self.num_pair_sample + i,:] = [num_query, diff]
 
     def get_error_array(self):
-        return self.errors    
+        return self.errors
 
     def get_query(self):
         item_to_ask_about = random.randrange(len(self.items))
