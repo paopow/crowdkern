@@ -9,13 +9,8 @@ class BaseKernel(object):
     def __init__(self, items, comparisons, **args):
         self.items = items
         self.comparisons = comparisons[:]
-        self.num_dims = 2
-        self.mu = 0.5
-
-        if 'num_dims' in args:
-            self.num_dims = args['num_dims']
-        if 'mu' in args:
-            self.mu = args['mu']
+        self.num_dims = args.pop('num_dims', 2)
+        self.mu = args.pop('mu', 0.5)
         self.update_M()
 
     def update_M(self):
