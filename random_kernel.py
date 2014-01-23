@@ -100,7 +100,7 @@ class RandomSimKernelTest(object):
         return self.errors
 
     def dist(self, a, b):
-        return np.dot(a-b, a-b)
+        return math.sqrt(np.dot(a-b, a-b))
 
     def get_comparison(self):
         return self.comparisons
@@ -165,7 +165,7 @@ class RandomOddKernelTest(object):
         return a, b, c
 
     def dist(self, a, b):
-        return np.dot(a-b, a-b)
+        return math.sqrt(np.dot(a-b, a-b))
 
     def get_comparison(self):
         return self.comparisons
