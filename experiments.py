@@ -36,6 +36,7 @@ class SimAnswer(object):
                 answer = (a, c, b)
         return [answer]
 
+
 class OddOneOutAnswer(object):
     def get_answer(self, a, b, c):
         true_a = self.M_true[a]
@@ -45,9 +46,9 @@ class OddOneOutAnswer(object):
         bc = self.dist(true_b, true_c)
         ac = self.dist(true_a, true_c)
 
-        if (ab >= bc and ac >= bc): # if a is odd
+        if (ab >= bc and ac >= bc):  # if a is odd
             answer = (b, a, c)
-        elif (ab >= ac and bc >= ac): # if b is odd
+        elif (ab >= ac and bc >= ac):  # if b is odd
             answer = (a, b, c)
         else:
             answer = (a, c, b)
@@ -58,11 +59,14 @@ class OddOneOutAnswer(object):
 class RandomSimTest(BaseKernel, RandomQuery, SimAnswer):
     pass
 
+
 class RandomOddTest(BaseKernel, RandomQuery, OddOneOutAnswer):
     pass
 
+
 class AdaptiveSimTest(BaseKernel, AdaptiveQuery, SimAnswer):
     pass
+
 
 class AdaptiveOddTest(BaseKernel, AdaptiveQuery, OddOneOutAnswer):
     pass
