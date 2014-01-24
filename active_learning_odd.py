@@ -1,4 +1,7 @@
 from utils import entropy
+import numpy as np
+import random
+
 
 def calc_tau(a, M, mu, comparisons):
     num_items, num_dims = M.shape
@@ -16,9 +19,6 @@ def calc_tau(a, M, mu, comparisons):
             tau[x] *= phat
     tau /= tau.sum()
     return tau
-
-
-
 
 
 def calc_info_gain(tau, b, c, M, mu):

@@ -1,4 +1,6 @@
 import numpy as np
+import scipy.optimize
+
 
 def cost(M, mu, comparisons):
     M /= np.sqrt(np.sum(M * M, axis=1))[:, None]

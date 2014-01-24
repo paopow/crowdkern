@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def odd_to_sim(comparison):
     comp1 = [comparison[0], comparison[2], comparison[1]]
     comp2 = [comparison[2], comparison[0], comparison[1]]

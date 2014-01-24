@@ -17,7 +17,7 @@ class BaseKernel(object):
 
         num_items = len(self.items)
         num_pairs = num_items * (num_items - 1) / 2
-        self.num_pair_sample = np.floor(sample_frac * num_pairs / 10.) * 10
+        self.num_pair_sample = int(sample_frac * num_pairs / 10.) * 10
         self.errors = np.zeros((self.num_pair_sample * (max_query / 10)))
 
         self.update_M()
@@ -54,9 +54,6 @@ class BaseKernel(object):
 
     def get_comparison(self):
         return self.comparisons
-
-    def get_answer(self, triplet):
-        pass
 
     def loop_count(self, num_query):
         for i in range(num_query):
