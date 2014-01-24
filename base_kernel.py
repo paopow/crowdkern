@@ -18,7 +18,7 @@ class BaseKernel(object):
         num_items = len(self.items)
         num_pairs = num_items * (num_items - 1) / 2
         self.num_pair_sample = int(sample_frac * num_pairs / 10.) * 10
-        self.errors = np.zeros((self.num_pair_sample * (max_query / 10)))
+        self.errors = np.zeros(((max_query / 10), self.num_pair_sample))
 
         self.update_M()
 
@@ -27,21 +27,18 @@ class BaseKernel(object):
         num_dims = self.num_dims
         self.M = prob_mds.optimize_item_positions(num_items, num_dims, self.mu, self.comparisons)
 
-    def get_error_array(self):
-        return self.errors
-
     def update_error(self, num_query):
         pairs = list(combinations(range(len(self.items)), 2))
         random.shuffle(pairs)
         step = num_query / 10 - 1
-        for i in range(self.num_pair_sample):
+        for i in xrange(self.num_pair_sample):
             a, b = pairs[i]
             pred_dist = self.dist(self.M[a, :], self.M[b, :])
             real_dist = self.dist(self.M_true[a, :], self.M_true[b, :])
 
             diff = abs(pred_dist - real_dist)
 
-            self.errors[step * self.num_pair_sample + i, :] = [num_query, diff]
+            self.errors[step, i] = diff
 
     def dist(self, a, b):
         delta = a - b
