@@ -30,7 +30,7 @@ class SimAnswer(object):
         elif ab < ac:
             answer = (a, b, c)
         else:
-            if np.random.random_integers(0,1) == 0:
+            if np.random.sample() < .5:
                 answer = (a, b, c)
             else:
                 answer = (a, c, b)
