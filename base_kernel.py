@@ -27,18 +27,14 @@ class BaseKernel(object):
         num_dims = self.num_dims
         self.M = prob_mds.optimize_item_positions(num_items, num_dims, self.mu, self.comparisons)
 
-    def update_error(self, num_query):
+    def draw_sample_of_errors(self, out):
         pairs = list(combinations(range(len(self.items)), 2))
         random.shuffle(pairs)
-        step = num_query / 10 - 1
         for i in xrange(self.num_pair_sample):
             a, b = pairs[i]
             pred_dist = self.dist(self.M[a, :], self.M[b, :])
             real_dist = self.dist(self.M_true[a, :], self.M_true[b, :])
-
-            diff = abs(pred_dist - real_dist)
-
-            self.errors[step, i] = diff
+            out[i] = abs(pred_dist - real_dist)
 
     def dist(self, a, b):
         delta = a - b
@@ -56,7 +52,7 @@ class BaseKernel(object):
             self.update_M()
             num_q = i + 2
             if (num_q != 0) and (num_q % 10 == 0):
-                self.update_error(num_q)
+                self.draw_sample_of_errors(out=self.errors[num_q / 10 - 1])
 
     def loop_auto(self):
         self.loop_count(self.max_query)
