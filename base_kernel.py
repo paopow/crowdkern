@@ -35,14 +35,9 @@ class BaseKernel(object):
         random.shuffle(pairs)
         step = num_query / 10 - 1
         for i in range(self.num_pair_sample):
-            pair = pairs[i]
-            a = self.M[pair[0], :]
-            b = self.M[pair[1], :]
-            pred_dist = self.dist(a, b)
-
-            true_a = self.M_true[pair[0], :]
-            true_b = self.M_true[pair[1], :]
-            real_dist = self.dist(true_a, true_b)
+            a, b = pairs[i]
+            pred_dist = self.dist(self.M[a, :], self.M[b, :])
+            real_dist = self.dist(self.M_true[a, :], self.M_true[b, :])
 
             diff = abs(pred_dist - real_dist)
 
